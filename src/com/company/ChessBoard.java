@@ -4,16 +4,16 @@ import java.util.ArrayList;
 
 public class ChessBoard {
 
-    private final Maharajas maharajas;
-    private final int N;
-    private final String[][] cells;
-    private int X;
-    private int Y;
-    private ArrayList<Maharajas> currentDiagonal = new ArrayList<>();
-    private int tempCountMaharajas = 0;
-    private int countMaharajas = 0;
+    private final Maharajas maharajas; // фигура магараджи
+    private final int N; // количество фигур
+    private final String[][] cells; // клетки
+    private int X; // позиция фигуры
+    private int Y; // позиция фигуры
+    private ArrayList<Maharajas> currentDiagonal = new ArrayList<>(); // временная диагональ
+    private int tempCountMaharajas = 0; // подсчёт фигур в строке
+    private int countMaharajas = 0; // общее количество фигур
 
-    public ChessBoard(int n) {
+    public ChessBoard(int n) { // конструктор игровой доски
         N = n;
         cells = new String[N][N];
         maharajas = new Maharajas(0, 0);
@@ -24,7 +24,7 @@ public class ChessBoard {
         }
     }
 
-    private void firstDiagonal()
+    private void firstDiagonal() // метод размещения фигур по первой диагонали
     {
         cells[0][0] = maharajas.model;
         for (int x = 0; x < N; x++) {
@@ -45,7 +45,7 @@ public class ChessBoard {
         }
     }
 
-    private void downDiagonals()
+    private void downDiagonals() // создание нижних диагоналей
     {
         int tempCount;
         if (tempCountMaharajas < 4){
@@ -69,7 +69,7 @@ public class ChessBoard {
         tempCountMaharajas++;
     }
 
-    public void play(){
+    public void play(){ // метод начала игры
         System.out.println("Размерность"+" "+N+"x"+N);
         firstDiagonal();
         downDiagonals();
