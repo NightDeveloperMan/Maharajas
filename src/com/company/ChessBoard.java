@@ -43,6 +43,7 @@ public class ChessBoard {
         for (Maharajas m: currentDiagonal) {
             System.out.println("Магараджи: "+m.getX()+" "+m.getY());
         }
+        System.out.println();
     }
 
     private void downDiagonals() // создание нижних диагоналей
@@ -54,8 +55,8 @@ public class ChessBoard {
         tempCountMaharajas = 0;
         ArrayList<Maharajas> temp = new ArrayList<>();
         for (Maharajas m: currentDiagonal) {
-            if(m.getX() < N-tempCount-1 && m.getY() < N-1) {
-                cells[m.getX()+tempCount+1][m.getY()+1] = maharajas.model;
+            if(m.getX() < N-tempCount && m.getY() < N-1) {
+                cells[m.getX()+tempCount][m.getY()+1] = maharajas.model;
                 temp.add(new Maharajas(m.getX()+tempCount,m.getY()+1));
                 tempCountMaharajas++;
                 countMaharajas++;
@@ -65,8 +66,9 @@ public class ChessBoard {
             System.out.println("Магараджи: "+m.getX()+" "+m.getY());
         }
         currentDiagonal.removeAll(currentDiagonal);
-        currentDiagonal = temp;
+        currentDiagonal.addAll(temp);
         tempCountMaharajas++;
+        System.out.println();
     }
 
     public void play(){ // метод начала игры
